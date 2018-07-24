@@ -74,6 +74,7 @@ LOCAL_APPS = [
     'base',
     'billing',
     'task',
+    'api',
     # Your stuff: custom apps go here
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
