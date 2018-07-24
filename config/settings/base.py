@@ -71,6 +71,9 @@ THIRD_PARTY_APPS = [
 ]
 LOCAL_APPS = [
     'project_4.users.apps.UsersAppConfig',
+    'base',
+    'billing',
+    'task',
     # Your stuff: custom apps go here
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
