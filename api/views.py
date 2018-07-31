@@ -7,7 +7,7 @@ from rest_framework import viewsets
 from rest_framework import status
 from rest_framework.decorators import detail_route
 from rest_framework.response import Response
-#from billing.models import TaskExpense
+from billing.models import TaskExpense
 from .serializers import UserSerializer, TaskSerializer
 from project_4.users.models import User
 from task.models import Task
@@ -28,12 +28,13 @@ class TaskViewSet(viewsets.ModelViewSet):
     serializer_class = TaskSerializer
 
     def create(self, request, *args, **kwargs):
-        request.data['created_by'] = request.user.pk
-        serializer = self.get_serializer(data=request.data)
-        serializer.is_valid(raise_exception=True)
-        self.perform_create(serializer)
-        headers = self.get_success_headers(serializer.data)
-        return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
+         #request.data = request.data.POST.copy()
+         #request.data['created_by'] = request.user.pk
+         serializer = self.get_serializer(data=request.data)
+         serializer.is_valid(raise_exception=True)
+         self.perform_create(serializer)
+         headers = self.get_success_headers(serializer.data)
+         return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
 
     @detail_route(methods=['POST', 'GET'])
     def assign(self, request, pk):
@@ -47,9 +48,11 @@ class TaskViewSet(viewsets.ModelViewSet):
             executor_id=request.user.pk,
             money=task.money)
 
+
+        creator_id = task.created_by.id
         if created:
             with transaction.atomic():
-                request.user.update_balance(u"Взял задачу", task.money, task=task)
+                request.user.update_balance(self, creator_id, task.money, task=task)
 
         Task.objects.filter(pk=pk, assignee=None).update(assignee=request.user)
         return Response(json.dumps({'message': "Taken"}), status=status.HTTP_200_OK)

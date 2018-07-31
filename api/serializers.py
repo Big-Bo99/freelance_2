@@ -7,12 +7,12 @@ from task.models import Task
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ('name', 'first_name', 'last_name', 'username', 'email', 'id')
+        fields = ('name', 'first_name', 'last_name', 'username', 'email', 'id', 'balance')
 
 
 class TaskSerializer(serializers.ModelSerializer):
     assignee = UserSerializer(read_only=True)
-    created_by = UserSerializer(required=False)
+    #created_by = UserSerializer(required=False)
 
     class Meta:
         model = Task
