@@ -7,8 +7,6 @@ import math
 from decimal import *
 
 
-
-
 class User(AbstractUser):
 
     CUSTOMER = 1
@@ -54,6 +52,7 @@ class User(AbstractUser):
     #         except IntegrityError:
     #             ml = MoneyLog.objects.get(**ml_filter)
 
+    #@transaction.atomic
     def update_balance(self, creator_id, money, **kwargs):
 
         User.objects.select_for_update().filter(pk=self.pk).update(balance=F('balance') + Decimal(money))

@@ -1,3 +1,11 @@
 [
-  "project_4/users/tests/test_forms.py::TestUserCreationForm::()::test_clean_username"
+  "project_4/users/tests/test_forms.py::TestUserCreationForm::()::test_clean_username",
+  "project_4/users/tests/test_models.py::test_user_get_absolute_url",
+  "project_4/users/tests/test_urls.py::test_detail",
+  "project_4/users/tests/test_urls.py::test_list",
+  "project_4/users/tests/test_urls.py::test_update",
+  "project_4/users/tests/test_urls.py::test_redirect",
+  "project_4/users/tests/test_views.py::TestUserUpdateView::()::test_get_success_url",
+  "project_4/users/tests/test_views.py::TestUserUpdateView::()::test_get_object",
+  "project_4/users/tests/test_views.py::TestUserRedirectView::()::test_get_redirect_url"
 ]

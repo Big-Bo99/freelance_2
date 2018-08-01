@@ -52,7 +52,7 @@ class TaskViewSet(viewsets.ModelViewSet):
         creator_id = task.created_by.id
         if created:
             with transaction.atomic():
-                request.user.update_balance(self, creator_id, task.money, task=task)
+                request.user.update_balance(creator_id, task.money, task=task)
 
         Task.objects.filter(pk=pk, assignee=None).update(assignee=request.user)
         return Response(json.dumps({'message': "Taken"}), status=status.HTTP_200_OK)
